@@ -1,11 +1,11 @@
 @extends('admin.layouts.app')
-@section('title', 'Roles')
+@section('title', 'Users')
 @section('content')
 
     <div class="card">
         <div class="row">
 
-            <h1>Role List</h1>
+            <h1>User List</h1>
             @if (session('message'))
                 <div class="alert alert-success alert-dismissible fade show text-white" role="alert">
                     {{ session('message') }}
@@ -14,26 +14,28 @@
             @endif
         </div>
         <div>
-            <a class="btn btn-primary" href="{{ route('roles.create') }}"> Create Role</a>
+            <a class="btn btn-primary" href="{{ route('users.create') }}"> Create user</a>
 
             <table class="table table-hover">
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>DisplayName</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                     <th>action</th>
                 </tr>
                 <?php $i = 1; ?>
-                @foreach ($roles as $role)
+                @foreach ($users as $user)
                     <tr>
                         <td>{{ $i++ }}</td>
-                        <td>{{ $role->name }}</td>
-                        <td>{{ $role->display_name }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->phone }}</td>
                         <td><a href="
-                            {{ route('roles.edit', $role->id) }}"
+                            {{ route('users.edit', $user->id) }}"
                                 class="btn btn-warning">edit</a>
 
-                            <form style="display: inline" action="{{ route('roles.destroy', $role->id) }}" method="POST">
+                            <form style="display: inline" action="{{ route('users.destroy', $user->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-danger">delete</button>
@@ -44,7 +46,7 @@
                     </tr>
                 @endforeach
             </table>
-            {{ $roles->links() }}
+            {{ $users->links() }}
         </div>
 
     </div>
