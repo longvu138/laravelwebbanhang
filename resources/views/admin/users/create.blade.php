@@ -4,13 +4,14 @@
     <div class="card">
         <h1>Create User</h1>
 
-        <form action="{{ route('users.store') }}" method="POST">
+        <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
                 <div class=" input-group-static col-5 mb-4">
                     <label>Image</label>
-                    <input type="file" accept="image/*" name="image" id="image-input" class="form-control">
+                    <input value="{{ old('image') }}" type="file" accept="image/*" name="image" id="image-input"
+                        class="form-control">
 
                     @error('image')
                         <span class="text-danger"> {{ $message }}</span>
@@ -50,7 +51,7 @@
 
             <div class="input-group input-group-static mb-4">
                 <label>Address</label>
-                <textarea type="text" value="{{ old('address') }}" name="address" class="form-control"> </textarea>
+                <textarea type="text" name="address" class="form-control">{{ old('address') }} </textarea>
                 @error('address')
                     <span class="text-danger"> {{ $message }}</span>
                 @enderror

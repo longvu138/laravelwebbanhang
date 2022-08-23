@@ -20,6 +20,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Image</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>action</th>
@@ -29,6 +30,8 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ $user->name }}</td>
+                        <td><img src="{{ $user->images->count() > 0 ? asset('upload/' . $user->images->first()->url) : 'upload/default.png' }}"
+                                width="200px" height="200px" alt=""></td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
                         <td><a href="
