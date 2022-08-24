@@ -33,12 +33,13 @@
                             {{ route('roles.edit', $role->id) }}"
                                 class="btn btn-warning">edit</a>
 
-                            <form style="display: inline" action="{{ route('roles.destroy', $role->id) }}" method="POST">
+                            <form action="{{ route('roles.destroy', $role->id) }}" style="display: inline;"
+                                id="form-delete{{ $role->id }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <button class="btn btn-danger">delete</button>
 
                             </form>
+                            <button class="btn btn-delete btn-danger" data-id={{ $role->id }}>Delete</button>
 
                         </td>
                     </tr>
