@@ -114,7 +114,7 @@ class ProductController extends Controller
         $dataUpdate = $request->except('sizes');
         $sizes = $request->sizes ? json_decode($request->sizes) : [];
         $product = $this->product->findOrFail($id);
-        $currentImage =  $product->images ? $product->images->first()->url : '';
+        $currentImage =  $product->images->count() > 0  ? $product->images->first()->url : '';
         $dataUpdate['image'] = $this->product->updateImage($request, $currentImage);
 
         $product->update($dataUpdate);

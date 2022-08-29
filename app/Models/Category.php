@@ -31,7 +31,6 @@ class Category extends Model
 
     public function getParents()
     {
-        # code...
         return Category::whereNull('parent_id')->get(['id', 'name']);
     }
 }
